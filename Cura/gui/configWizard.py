@@ -523,7 +523,7 @@ class MachineSelectPage(InfoPage):
 				profile.putMachineSetting('extruder_head_size_max_x', '0.0')
 				profile.putMachineSetting('extruder_head_size_max_y', '0.0')
 				profile.putMachineSetting('extruder_head_size_height', '0.0')
-			else:
+			else: #MINI
 				profile.putMachineSetting('machine_width', '155')
 				profile.putMachineSetting('machine_depth', '155')
 				profile.putMachineSetting('machine_height', '163')
