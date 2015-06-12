@@ -518,11 +518,11 @@ class MachineSelectPage(InfoPage):
 				profile.putMachineSetting('machine_height', '250')
 				profile.putMachineSetting('serial_baud', '115200')
 				# Machine type and name are set in the nozzle select page
-				profile.putMachineSetting('extruder_head_size_min_x', '0.0')
-				profile.putMachineSetting('extruder_head_size_min_y', '0.0')
-				profile.putMachineSetting('extruder_head_size_max_x', '0.0')
-				profile.putMachineSetting('extruder_head_size_max_y', '0.0')
-				profile.putMachineSetting('extruder_head_size_height', '0.0')
+				profile.putMachineSetting('extruder_head_size_min_x', '42')
+				profile.putMachineSetting('extruder_head_size_min_y', '20')
+				profile.putMachineSetting('extruder_head_size_max_x', '80')
+				profile.putMachineSetting('extruder_head_size_max_y', '47')
+				profile.putMachineSetting('extruder_head_size_height', '35')
 			else: #MINI
 				profile.putMachineSetting('machine_width', '155')
 				profile.putMachineSetting('machine_depth', '155')
