@@ -55,7 +55,12 @@ To install the software that is required to build Cura, run the following
 commands:
 
 ```bash
+# Fedora 22 and newer users
+sudo dnf install -y git rpmdevtools rpm-build mock arduino
+
+# Fedora 21 and older users
 sudo yum install -y git rpmdevtools rpm-build mock arduino
+
 
 # Ensure that the Arduino tools can be found by the build
 sudo mkdir -p /usr/share/arduino/hardware/tools/avr
@@ -74,6 +79,10 @@ cd Cura
 ./package.sh fedora
 
 # Install on the current system
+# Fedora 22 and newer users
+sudo dnf localinstall -y scripts/linux/fedora/RPMS/Cura-*.rpm
+
+# Fedora 21 and older users
 sudo yum localinstall -y scripts/linux/fedora/RPMS/Cura-*.rpm
 ```
 
