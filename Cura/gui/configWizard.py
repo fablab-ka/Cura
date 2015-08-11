@@ -382,9 +382,11 @@ class MachineSelectPage(InfoPage):
 		super(MachineSelectPage, self).__init__(parent, _("Select your machine"))
 		self.AddText(_("What kind of machine do you have:"))
 
-		self.LulzbotMiniRadio = self.AddRadioButton("LulzBot Mini", style=wx.RB_GROUP)
+		self.HexagonV2Radio = self.AddRadioButton("Hexagon V2", style=wx.RB_GROUP)
+		self.HexagonV2Radio.Bind(wx.EVT_RADIOBUTTON, self.OnHexagonV2Select)
+		self.HexagonV2Radio.SetValue(True)
+		self.LulzbotMiniRadio = self.AddRadioButton("LulzBot Mini")
 		self.LulzbotMiniRadio.Bind(wx.EVT_RADIOBUTTON, self.OnLulzbotSelect)
-		self.LulzbotMiniRadio.SetValue(True)
 		self.LulzbotTaz5Radio = self.AddRadioButton("LulzBot TAZ 5")
 		self.LulzbotTaz5Radio.Bind(wx.EVT_RADIOBUTTON, self.OnTaz5Select)
 		self.LulzbotTaz4Radio = self.AddRadioButton("LulzBot TAZ 4")
@@ -403,6 +405,9 @@ class MachineSelectPage(InfoPage):
 		self.PrintrbotRadio.Bind(wx.EVT_RADIOBUTTON, self.OnPrintrbotSelect)
 		self.OtherRadio = self.AddRadioButton(_("Other (Ex: RepRap, MakerBot, Witbox)"))
 		self.OtherRadio.Bind(wx.EVT_RADIOBUTTON, self.OnOtherSelect)
+
+	def OnHexagonV2Select(self, e):
+		wx.wizard.WizardPageSimple.Chain(self, self.GetParent().hexagonV2ReadyPage)
 
 	def OnUltimaker2Select(self, e):
 		wx.wizard.WizardPageSimple.Chain(self, self.GetParent().ultimaker2ReadyPage)
@@ -996,6 +1001,15 @@ class UltimakerCalibrateStepsPerEPage(InfoPage):
 	def StoreData(self):
 		profile.putPreference('steps_per_e', self.stepsPerEInput.GetValue())
 
+class HexagonV2ReadyPage(InfoPage):
+	def __init__(self, parent):
+		super(HexagonV2ReadyPage, self).__init__(parent, _("Hexagon V2"))
+		self.AddText(_('Cura is now ready to be used with your Hexagon V2 printer.'))
+		self.AddSeperator()
+		self.AddText(_('For more information about using Cura with your Hexagon V2'))
+		self.AddText(_('3D printer, please visit www.fablab-karlsruhe.de/hexagonv2'))
+		self.AddSeperator()
+
 class Ultimaker2ReadyPage(InfoPage):
 	def __init__(self, parent):
 		super(Ultimaker2ReadyPage, self).__init__(parent, _("Ultimaker2"))
@@ -1074,6 +1088,7 @@ class ConfigWizard(wx.wizard.Wizard):
 		self.customRepRapInfoPage = CustomRepRapInfoPage(self)
 		self.otherMachineInfoPage = OtherMachineInfoPage(self)
 
+		self.hexagonV2ReadyPage = HexagonV2ReadyPage(self)
 		self.ultimaker2ReadyPage = Ultimaker2ReadyPage(self)
 		self.lulzbotReadyPage = LulzbotReadyPage(self)
 		self.taz5NozzleSelectPage = Taz5NozzleSelectPage(self)
@@ -1087,6 +1102,7 @@ class ConfigWizard(wx.wizard.Wizard):
 		wx.wizard.WizardPageSimple.Chain(self.printrbotSelectType, self.otherMachineInfoPage)
 		wx.wizard.WizardPageSimple.Chain(self.otherMachineSelectPage, self.customRepRapInfoPage)
 		wx.wizard.WizardPageSimple.Chain(self.machineSelectPage, self.lulzbotReadyPage)
+		wx.wizard.WizardPageSimple.Chain(self.machineSelectPage, self.hexagonV2ReadyPage)
 
 		self.FitToPage(self.machineSelectPage)
 		self.GetPageAreaSizer().Add(self.machineSelectPage)

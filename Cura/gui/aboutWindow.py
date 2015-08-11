@@ -18,7 +18,7 @@ class aboutWindow(wx.Frame):
 		s = wx.BoxSizer(wx.VERTICAL)
 		p.SetSizer(s)
 
-		title = wx.StaticText(p, -1, 'Cura LulzBot Edition')
+		title = wx.StaticText(p, -1, 'Cura FabLab Karlsruhe Edition')
 		title.SetFont(wx.Font(18, wx.SWISS, wx.NORMAL, wx.BOLD))
 		s.Add(title, flag=wx.ALIGN_CENTRE|wx.EXPAND|wx.BOTTOM, border=5)
 
@@ -26,8 +26,8 @@ class aboutWindow(wx.Frame):
  		s.Add(wx.StaticText(p, -1, 'Version {}'.format(version_num)))
 		s.Add(wx.StaticText(p, -1, 'End solution for Open Source Fused Filament Fabrication 3D printing.'), flag=wx.TOP, border=5)
 		s.Add(wx.StaticText(p, -1, 'Cura is currently developed and maintained by David Braam and Ultimaker.'), flag=wx.TOP, border=5)
-		s.Add(wx.StaticText(p, -1, 'Cura LulzBot Edition has been modified and maintained by Aleph Objects, Inc.'))
-		s.Add(wx.StaticText(p, -1, 'for use with LulzBot 3D printers.'))
+		s.Add(wx.StaticText(p, -1, 'Cura FabLab Karlsruhe Edition has been modified and maintained by Aleph Objects, Inc. and FabLab Karlsruhe e.V.'))
+		s.Add(wx.StaticText(p, -1, 'for use with Hexagon V2 3D printers.'))
 
 		s.Add(wx.StaticText(p, -1, 'Cura is built with the following components:'), flag=wx.TOP, border=10)
 		self.addComponent('Cura', 'Graphical user interface', 'AGPLv3', 'https://github.com/daid/Cura')
