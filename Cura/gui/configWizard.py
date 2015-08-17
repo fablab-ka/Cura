@@ -439,6 +439,34 @@ class MachineSelectPage(InfoPage):
 
 	def StoreData(self):
 		profile.putProfileSetting('retraction_enable', 'True')
+		if self.HexagonV2Radio.GetValue():
+			profile.putMachineSetting('machine_width', '200')
+			profile.putMachineSetting('machine_depth', '200')
+			profile.putMachineSetting('machine_height', '427')
+			profile.putMachineSetting('machine_name', 'hexagonv2')
+			profile.putMachineSetting('machine_type', 'hexagonv2')
+			profile.putMachineSetting('has_heated_bed', 'True')
+			profile.putMachineSetting('machine_center_is_zero', 'True')
+			profile.putMachineSetting('gcode_flavor', 'RepRap (Marlin/Sprinter)')
+			profile.putMachineSetting('extruder_head_size_min_x', '20.0')
+			profile.putMachineSetting('extruder_head_size_min_y', '20.0')
+			profile.putMachineSetting('extruder_head_size_max_x', '20.0')
+			profile.putMachineSetting('extruder_head_size_max_y', '20.0')
+			profile.putMachineSetting('extruder_head_size_height', '60.0')
+			profile.putProfileSetting('nozzle_size', '0.35')
+			profile.putProfileSetting('fan_full_height', '5.0')
+			profile.putMachineSetting('extruder_offset_x1', '0.0')
+			profile.putMachineSetting('extruder_offset_y1', '0.0')
+			profile.putMachineSetting('extruder_amount', '1')
+			profile.putPreference('startMode', 'Simple')
+			profile.putMachineSetting('serial_baud', '115200')
+			profile.putProfileSetting('filament_diameter', '1.75')
+			profile.putProfileSetting('print_temperature', '210')
+			profile.putProfileSetting('print_speed', '50')
+			profile.putProfileSetting('travel_speed', '50')
+			profile.putProfileSetting('retraction_speed', '40.0')
+			profile.putProfileSetting('retraction_amount', '4.5')
+
 		if self.Ultimaker2Radio.GetValue() or self.Ultimaker2GoRadio.GetValue() or self.Ultimaker2ExtRadio.GetValue():
 			if self.Ultimaker2Radio.GetValue():
 				profile.putMachineSetting('machine_width', '230')
